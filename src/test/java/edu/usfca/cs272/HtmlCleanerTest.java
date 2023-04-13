@@ -9,11 +9,12 @@ import java.text.Normalizer;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.ClassOrderer.ClassName;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -22,9 +23,9 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Runs all of the tests associated with this homework.
  *
  * @author CS 272 Software Development (University of San Francisco)
- * @version Fall 2022
+ * @version Spring 2023
  */
-@TestMethodOrder(MethodName.class)
+@TestClassOrder(ClassName.class)
 public class HtmlCleanerTest {
 	/**
 	 * Tests the {@link HtmlCleaner#stripTags(String)} method.
@@ -613,7 +614,7 @@ public class HtmlCleanerTest {
 					Expected: src/test/resources/expected/%1$s.txt
 					Actual: out/%1$s-actual.txt
 				""";
-		Assertions.assertEquals(expected, actual, debug.formatted(name));
+		Assertions.assertEquals(expected, actual, () -> debug.formatted(name));
 	}
 
 	/**
